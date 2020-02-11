@@ -1,0 +1,421 @@
+# This is a comment.
+# This is how we clear R's memory
+rm(list = ls()) 
+library(readxl)
+
+# 'BCK_Annual_Data_TUDO_COLUNA.xls' is my data; it's the original data, so DO NOT CHANGE IT!
+filename <- 'BCK_Global_R.csv'
+goods_credit <- 'Goods_C.csv'
+goods_debit <- 'Goods_D.csv'
+goods_net <- 'Goods_N.csv'
+services_credit <- 'Services_C.csv'
+services_debit <- 'Services_D.csv'
+services_net <- 'Services_N.csv'
+services_96 <- 'Services_Y1996.csv'
+services_97 <- 'Services_Y1997.csv'
+services_98 <- 'Services_Y1998.csv'
+services_99 <- 'Services_Y1999.csv'
+services_00 <- 'Services_Y2000.csv'
+services_01 <- 'Services_Y2001.csv'
+services_02 <- 'Services_Y2002.csv'
+services_03 <- 'Services_Y2003.csv'
+services_04 <- 'Services_Y2004.csv'
+services_05 <- 'Services_Y2005.csv'
+services_06 <- 'Services_Y2006.csv'
+services_07 <- 'Services_Y2007.csv'
+services_08 <- 'Services_Y2008.csv'
+services_09 <- 'Services_Y2009.csv'
+services_10 <- 'Services_Y2010.csv'
+services_11 <- 'Services_Y2011.csv'
+services_12 <- 'Services_Y2012.csv'
+services_13 <- 'Services_Y2013.csv'
+services_14 <- 'Services_Y2014.csv'
+services_15 <- 'Services_Y2015.csv'
+services_16 <- 'Services_Y2016.csv'
+services_17 <- 'Services_Y2017.csv'
+services_18 <- 'Services_Y2018.csv'
+
+month_year <- 'HEATMAP_1_Variable.csv'
+
+h_ca_c <- 'Heat_CA_C.csv'
+h_ca_d <- 'Heat_CA_D.csv'
+h_ca_n <- 'Heat_CA_N.csv'
+h_cca_c <- 'Heat_CCA_C.csv'
+h_cca_d <- 'Heat_CCA_D.csv'
+h_cca_n <- 'Heat_CCA_N.csv'
+h_g_c <- 'Heat_G_C.csv'
+h_g_d <- 'Heat_G_D.csv'
+h_g_n <- 'Heat_G_N.csv'
+h_pi_c <- 'Heat_PI_C.csv'
+h_pi_d <- 'Heat_PI_D.csv'
+h_pi_n <- 'Heat_PI_N.csv'
+h_s_c <- 'Heat_S_C.csv'
+h_s_d <- 'Heat_S_D.csv'
+h_s_n <- 'Heat_S_N.csv'
+h_si_c <- 'Heat_SI_C.csv'
+h_si_d <- 'Heat_SI_D.csv'
+h_si_n <- 'Heat_SI_N.csv'
+
+MIP_2007 <- 'MIP_Y2007.csv'
+MIP_2008 <- 'MIP_Y2008.csv'
+MIP_2009 <- 'MIP_Y2009.csv'
+MIP_2010 <- 'MIP_Y2010.csv'
+MIP_2011 <- 'MIP_Y2011.csv'
+MIP_2012 <- 'MIP_Y2012.csv'
+MIP_2013 <- 'MIP_Y2013.csv'
+MIP_2014 <- 'MIP_Y2014.csv'
+MIP_2015 <- 'MIP_Y2015.csv'
+MIP_2016 <- 'MIP_Y2016.csv'
+MIP_2017 <- 'MIP_Y2017.csv'
+MIP_2018 <- 'MIP_Y2018.csv'
+
+# This is how we read a .csv to a data.frame
+df <- read.csv(filename, header = TRUE, sep = ';')
+goods_c <- read.csv(goods_credit, header = TRUE, sep = ';')
+goods_d <- read.csv(goods_debit, header = TRUE , sep = ';')
+goods_n <- read.csv(goods_net, header = TRUE, sep = ';')
+services_d <- read.csv(services_debit, header = TRUE , sep = ';')
+services_c <- read.csv(services_credit, header = TRUE, sep = ';')
+services_n <- read.csv(services_net, header = TRUE , sep = ';')
+heat_ca_c <- read.csv(h_ca_c, header = TRUE , sep = ';')
+heat_ca_d <- read.csv(h_ca_d, header = TRUE , sep = ';')
+heat_ca_n <- read.csv(h_ca_n, header = TRUE , sep = ';')
+heat_cca_c <- read.csv(h_cca_c, header = TRUE , sep = ';')
+heat_cca_d <- read.csv(h_cca_d, header = TRUE , sep = ';')
+heat_cca_n <- read.csv(h_cca_n, header = TRUE , sep = ';')
+heat_g_c <- read.csv(h_g_c, header = TRUE , sep = ';')
+heat_g_d <- read.csv(h_g_d, header = TRUE , sep = ';')
+heat_g_n <- read.csv(h_g_n, header = TRUE , sep = ';')
+heat_s_c <- read.csv(h_s_c, header = TRUE , sep = ';')
+heat_s_d <- read.csv(h_s_d, header = TRUE , sep = ';')
+heat_s_n <- read.csv(h_s_n, header = TRUE , sep = ';')
+heat_pi_c <- read.csv(h_pi_c, header = TRUE , sep = ';')
+heat_pi_d <- read.csv(h_pi_d, header = TRUE , sep = ';')
+heat_pi_n <- read.csv(h_pi_n, header = TRUE , sep = ';')
+heat_si_c <- read.csv(h_si_c, header = TRUE , sep = ';')
+heat_si_d <- read.csv(h_si_d, header = TRUE , sep = ';')
+heat_si_n <- read.csv(h_si_n, header = TRUE , sep = ';')
+
+
+services_1996 <- read.csv(services_96, header = TRUE , sep = ';')
+services_1997 <- read.csv(services_97, header = TRUE , sep = ';')
+services_1998 <- read.csv(services_98, header = TRUE , sep = ';')
+services_1999 <- read.csv(services_99, header = TRUE , sep = ';')
+services_2000 <- read.csv(services_00, header = TRUE , sep = ';')
+services_2001 <- read.csv(services_01, header = TRUE , sep = ';')
+services_2002 <- read.csv(services_02, header = TRUE , sep = ';')
+services_2003 <- read.csv(services_03, header = TRUE , sep = ';')
+services_2004 <- read.csv(services_04, header = TRUE , sep = ';')
+services_2005 <- read.csv(services_05, header = TRUE , sep = ';')
+services_2006 <- read.csv(services_06, header = TRUE , sep = ';')
+services_2007 <- read.csv(services_07, header = TRUE , sep = ';')
+services_2008 <- read.csv(services_08, header = TRUE , sep = ';')
+services_2009 <- read.csv(services_09, header = TRUE , sep = ';')
+services_2010 <- read.csv(services_10, header = TRUE , sep = ';')
+services_2011 <- read.csv(services_11, header = TRUE , sep = ';')
+services_2012 <- read.csv(services_12, header = TRUE , sep = ';')
+services_2013 <- read.csv(services_13, header = TRUE , sep = ';')
+services_2014 <- read.csv(services_14, header = TRUE , sep = ';')
+services_2015 <- read.csv(services_15, header = TRUE , sep = ';')
+services_2016 <- read.csv(services_16, header = TRUE , sep = ';')
+services_2017 <- read.csv(services_17, header = TRUE , sep = ';')
+services_2018 <- read.csv(services_18, header = TRUE , sep = ';')
+
+MIP_Y2007 <- read.csv(MIP_2007, header = TRUE , sep = ';')
+MIP_Y2008 <- read.csv(MIP_2008, header = TRUE , sep = ';')
+MIP_Y2009 <- read.csv(MIP_2009, header = TRUE , sep = ';')
+MIP_Y2010 <- read.csv(MIP_2010, header = TRUE , sep = ';')
+MIP_Y2011 <- read.csv(MIP_2011, header = TRUE , sep = ';')
+MIP_Y2012 <- read.csv(MIP_2012, header = TRUE , sep = ';')
+MIP_Y2013 <- read.csv(MIP_2013, header = TRUE , sep = ';')
+MIP_Y2014 <- read.csv(MIP_2014, header = TRUE , sep = ';')
+MIP_Y2015 <- read.csv(MIP_2015, header = TRUE , sep = ';')
+MIP_Y2016 <- read.csv(MIP_2016, header = TRUE , sep = ';')
+MIP_Y2017 <- read.csv(MIP_2017, header = TRUE , sep = ';')
+MIP_Y2018 <- read.csv(MIP_2018, header = TRUE , sep = ';')
+
+
+highlight_df_2018 <- services_2018  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2017 <- services_2017  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2016 <- services_2016  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2015 <- services_2015  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2014 <- services_2014  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2013 <- services_2013  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2012 <- services_2012  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2011 <- services_2011  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2010 <- services_2010  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2009 <- services_2009  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2008 <- services_2008  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2007 <- services_2007  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2006 <- services_2006  %>% 
+  filter(Weight>=0.2)
+
+highlight_df_2005 <- services_2005  %>% 
+  filter(Weight>=0.19)
+
+highlight_df_2004 <- services_2004  %>% 
+  filter(Weight>=0.18)
+
+highlight_df_2003 <- services_2003  %>% 
+  filter(Weight>=0.18)
+
+highlight_df_2002 <- services_2002  %>% 
+  filter(Weight>=0.16)
+
+highlight_df_2001 <- services_2001  %>% 
+  filter(Weight>=0.15)
+
+highlight_df_2000 <- services_2000 %>% 
+  filter(Weight>=0.14)
+
+highlight_df_1999 <- services_1999  %>% 
+  filter(Weight>=0.14)
+
+highlight_df_1998 <- services_1998  %>% 
+  filter(Weight>=0.15)
+
+highlight_df_1997 <- services_1997  %>% 
+  filter(Weight>=0.15)
+
+highlight_df_1996 <- services_1996  %>% 
+  filter(Weight>=0.15)
+
+
+df <- setNames(df, c("Year","Current and capital account","AUX","Goods", "Services", "Primary income", "Secondary income","Capital account" ))
+goods_c <- setNames(goods_c, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+goods_d <- setNames(goods_d, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+goods_n <- setNames(goods_n, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+services_d <- setNames(services_d, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+services_c <- setNames(services_c, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+services_n <- setNames(services_n, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
+
+services_1996 <- setNames(services_1996, c("YEAR","Service","Exports","Imports","Weight"))
+services_1997 <- setNames(services_1997, c("YEAR","Service","Exports","Imports","Weight"))
+services_1998 <- setNames(services_1998, c("YEAR","Service","Exports","Imports","Weight"))
+services_1999 <- setNames(services_1999, c("YEAR","Service","Exports","Imports","Weight"))
+services_2000 <- setNames(services_2000, c("YEAR","Service","Exports","Imports","Weight"))
+services_2001 <- setNames(services_2001, c("YEAR","Service","Exports","Imports","Weight"))
+services_2002 <- setNames(services_2002, c("YEAR","Service","Exports","Imports","Weight"))
+services_2003 <- setNames(services_2003, c("YEAR","Service","Exports","Imports","Weight"))
+services_2004 <- setNames(services_2004, c("YEAR","Service","Exports","Imports","Weight"))
+services_2005 <- setNames(services_2005, c("YEAR","Service","Exports","Imports","Weight"))
+services_2006 <- setNames(services_2006, c("YEAR","Service","Exports","Imports","Weight"))
+services_2007 <- setNames(services_2007, c("YEAR","Service","Exports","Imports","Weight"))
+services_2008 <- setNames(services_2008, c("YEAR","Service","Exports","Imports","Weight"))
+services_2009 <- setNames(services_2009, c("YEAR","Service","Exports","Imports","Weight"))
+services_2010 <- setNames(services_2010, c("YEAR","Service","Exports","Imports","Weight"))
+services_2011 <- setNames(services_2011, c("YEAR","Service","Exports","Imports","Weight"))
+services_2012 <- setNames(services_2012, c("YEAR","Service","Exports","Imports","Weight"))
+services_2013 <- setNames(services_2013, c("YEAR","Service","Exports","Imports","Weight"))
+services_2014 <- setNames(services_2014, c("YEAR","Service","Exports","Imports","Weight"))
+services_2015 <- setNames(services_2015, c("YEAR","Service","Exports","Imports","Weight"))
+services_2016 <- setNames(services_2016, c("YEAR","Service","Exports","Imports","Weight"))
+services_2017 <- setNames(services_2017, c("YEAR","Service","Exports","Imports","Weight"))
+services_2018 <- setNames(services_2018, c("YEAR","Service","Exports","Imports","Weight"))
+
+
+MIP_Y2018 <- setNames(MIP_Y2018,c("FullName","Country","GDP"))
+MIP_Y2017 <- setNames(MIP_Y2017,c("FullName","Country","GDP"))
+MIP_Y2016 <- setNames(MIP_Y2016,c("FullName","Country","GDP"))
+MIP_Y2015 <- setNames(MIP_Y2015,c("FullName","Country","GDP"))
+MIP_Y2014 <- setNames(MIP_Y2014,c("FullName","Country","GDP"))
+MIP_Y2013 <- setNames(MIP_Y2013,c("FullName","Country","GDP"))
+MIP_Y2012 <- setNames(MIP_Y2012,c("FullName","Country","GDP"))
+MIP_Y2011 <- setNames(MIP_Y2011,c("FullName","Country","GDP"))
+MIP_Y2010 <- setNames(MIP_Y2010,c("FullName","Country","GDP"))
+MIP_Y2009 <- setNames(MIP_Y2009,c("FullName","Country","GDP"))
+MIP_Y2008 <- setNames(MIP_Y2008,c("FullName","Country","GDP"))
+MIP_Y2007 <- setNames(MIP_Y2007,c("FullName","Country","GDP"))
+
+
+MIP_Y2018_P <-  MIP_Y2018[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2017_P <-  MIP_Y2017[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2016_P <-  MIP_Y2016[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2015_P <-  MIP_Y2015[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2014_P <-  MIP_Y2014[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2013_P <-  MIP_Y2013[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2012_P <-  MIP_Y2012[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2011_P <-  MIP_Y2011[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2010_P <-  MIP_Y2010[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2009_P <-  MIP_Y2009[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2008_P <-  MIP_Y2008[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+MIP_Y2007_P <-  MIP_Y2007[-c(1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28),]
+
+
+MIP_Y2018_04 <-  MIP_Y2018[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2017_04 <-  MIP_Y2017[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2016_04 <-  MIP_Y2016[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2015_04 <-  MIP_Y2015[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2014_04 <-  MIP_Y2014[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2013_04 <-  MIP_Y2013[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2012_04 <-  MIP_Y2012[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2011_04 <-  MIP_Y2011[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2010_04 <-  MIP_Y2010[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2009_04 <-  MIP_Y2009[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2008_04 <-  MIP_Y2008[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+MIP_Y2007_04 <-  MIP_Y2007[-c(1,4,5,7,8,9,10,12,16,19,20,26,27,28),]
+
+
+services_1996_WT <- services_1996[-c(3,4),]
+services_1997_WT <- services_1997[-c(3,4),]
+services_1998_WT <- services_1998[-c(3,4),]
+services_1999_WT <- services_1999[-c(3,4),]
+services_2000_WT <- services_2000[-c(3,4),]
+services_2001_WT <- services_2001[-c(3,4),]
+services_2002_WT <- services_2002[-c(3,4),]
+services_2003_WT <- services_2003[-c(3,4),]
+services_2004_WT <- services_2004[-c(3,4),]
+services_2005_WT <- services_2005[-c(3,4),]
+services_2006_WT <- services_2006[-c(3,4),]
+services_2007_WT <- services_2007[-c(3,4),]
+services_2008_WT <- services_2008[-c(3,4),]
+services_2009_WT <- services_2009[-c(3,4),]
+services_2010_WT <- services_2010[-c(3,4),]
+services_2011_WT <- services_2011[-c(3,4),]
+services_2012_WT <- services_2012[-c(3,4),]
+services_2013_WT <- services_2013[-c(3,4),]
+services_2014_WT <- services_2014[-c(3,4),]
+services_2015_WT <- services_2015[-c(3,4),]
+services_2016_WT <- services_2016[-c(3,4),]
+services_2017_WT <- services_2017[-c(3,4),]
+services_2018_WT <- services_2018[-c(3,4),]
+
+row.names(heat_ca_c) <- heat_ca_c$NAME
+heat_ca_c<- heat_ca_c[,2:13]
+heat_ca_c <-  t(heat_ca_c)
+heat_ca_c_matrix <- as.matrix(heat_ca_c)
+head(heat_ca_c)
+
+row.names(heat_ca_d) <- heat_ca_d$NAME
+heat_ca_d<- heat_ca_d[,2:13]
+heat_ca_d <-  t(heat_ca_d)
+heat_ca_d_matrix <- as.matrix(heat_ca_d)
+head(heat_ca_d)
+
+row.names(heat_ca_n) <- heat_ca_n$NAME
+heat_ca_n<- heat_ca_n[,2:13]
+heat_ca_n <-  t(heat_ca_n)
+heat_ca_n_matrix <- as.matrix(heat_ca_n)
+head(heat_ca_n)
+
+row.names(heat_cca_c) <- heat_cca_c$NAME
+heat_cca_c<- heat_cca_c[,2:13]
+heat_cca_c <-  t(heat_cca_c)
+heat_cca_c_matrix <- as.matrix(heat_cca_c)
+head(heat_cca_c)
+
+row.names(heat_cca_d) <- heat_cca_d$NAME
+heat_cca_d<- heat_cca_d[,2:13]
+heat_cca_d <-  t(heat_cca_d)
+heat_cca_d_matrix <- as.matrix(heat_cca_d)
+head(heat_cca_d)
+
+row.names(heat_cca_n) <- heat_cca_n$NAME
+heat_cca_n<- heat_cca_n[,2:13]
+heat_cca_n <-  t(heat_cca_n)
+heat_cca_n_matrix <- as.matrix(heat_cca_n)
+head(heat_cca_n)
+
+row.names(heat_g_c) <- heat_g_c$NAME
+heat_g_c<- heat_g_c[,2:13]
+heat_g_c <-  t(heat_g_c)
+heat_g_c_matrix <- as.matrix(heat_g_c)
+head(heat_g_c)
+
+row.names(heat_g_d) <- heat_g_d$NAME
+heat_g_d<- heat_g_d[,2:13]
+heat_g_d <-  t(heat_g_d)
+heat_g_d_matrix <- as.matrix(heat_g_d)
+head(heat_g_d)
+
+row.names(heat_g_n) <- heat_g_n$NAME
+heat_g_n<- heat_g_n[,2:13]
+heat_g_n <-  t(heat_g_n)
+heat_g_n_matrix <- as.matrix(heat_g_n)
+head(heat_g_n)
+
+row.names(heat_s_c) <- heat_s_c$NAME
+heat_s_c<- heat_s_c[,2:13]
+heat_s_c <-  t(heat_s_c)
+heat_s_c_matrix <- as.matrix(heat_s_c)
+head(heat_s_c)
+
+row.names(heat_s_d) <- heat_s_d$NAME
+heat_s_d<- heat_s_d[,2:13]
+heat_s_d <-  t(heat_s_d)
+heat_s_d_matrix <- as.matrix(heat_s_d)
+head(heat_s_d)
+
+row.names(heat_s_n) <- heat_s_n$NAME
+heat_s_n<- heat_s_n[,2:13]
+heat_s_n <-  t(heat_s_n)
+heat_s_n_matrix <- as.matrix(heat_s_n)
+head(heat_s_n)
+
+row.names(heat_pi_c) <- heat_pi_c$NAME
+heat_pi_c<- heat_pi_c[,2:13]
+heat_pi_c <-  t(heat_pi_c)
+heat_pi_c_matrix <- as.matrix(heat_pi_c)
+head(heat_pi_c)
+
+row.names(heat_pi_d) <- heat_pi_d$NAME
+heat_pi_d<- heat_pi_d[,2:13]
+heat_pi_d <-  t(heat_pi_d)
+heat_pi_d_matrix <- as.matrix(heat_pi_d)
+head(heat_pi_d)
+
+row.names(heat_pi_n) <- heat_pi_n$NAME
+heat_pi_n<- heat_pi_n[,2:13]
+heat_pi_n <-  t(heat_pi_n)
+heat_pi_n_matrix <- as.matrix(heat_pi_n)
+head(heat_pi_n)
+
+row.names(heat_si_c) <- heat_si_c$NAME
+heat_si_c<- heat_si_c[,2:13]
+heat_si_c <-  t(heat_si_c)
+heat_si_c_matrix <- as.matrix(heat_si_c)
+head(heat_si_c)
+
+row.names(heat_si_d) <- heat_si_d$NAME
+heat_si_d<- heat_si_d[,2:13]
+heat_si_d <-  t(heat_si_d)
+heat_si_d_matrix <- as.matrix(heat_si_d)
+head(heat_si_d)
+
+row.names(heat_si_n) <- heat_si_n$NAME
+heat_si_n<- heat_si_n[,2:13]
+heat_si_n <-  t(heat_si_n)
+heat_si_n_matrix <- as.matrix(heat_si_n)
+head(heat_si_n)
+
+df <- df[,-(3)]
+
+
+
+
+
+
