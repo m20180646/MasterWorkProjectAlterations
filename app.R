@@ -108,7 +108,7 @@ ui <- fluidPage(#theme="bootstrap.css"
                       ,                       HTML('<center><span style= color:rgb(142,142,142)><font face=Calibri size=3>Vitor Lopes Silveira <a href="https://www.linkedin.com/in/vitor-lopes-silveira/">LinkedIn</a></center> </font></span>')
                       ,   HTML('<center><span style= color:rgb(142,142,142)><font face=Calibri size=3>   This prototype will be used in the Project Work "How to effectively use interactivity to improve visual analysis and communication in groups of novices or experts, using the R package Shiny" developed by Maria do Mar Viana.</a><//center> </font></span>')
                       
-                      ,    uiOutput("video")
+                   #   ,    uiOutput("video")
                       
                       
              ),
@@ -122,13 +122,13 @@ ui <- fluidPage(#theme="bootstrap.css"
                           # tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #8E0000}")),
                           setSliderColor(c("#8E0000 ", "#8E0000", "#8E0000","#8E0000"), c(1, 2, 3,4)),
                           useShinyjs(),
-          
-                                sliderInput("dates", "Select a time period in the slider:",
-                                            min = 1996, max = 2018,
-                                            sep = "", step= 3,
-                                            ticks=TRUE,
-                                            value = c(1996,2018)),
-
+                          
+                          sliderInput("dates", "Select a time period in the slider:",
+                                      min = 1996, max = 2018,
+                                      sep = "", step= 3,
+                                      ticks=TRUE,
+                                      value = c(1996,2018)),
+                          
                           actionButton("reset1V", "Reset")
                           #,br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                           #   HTML("<p align=right><font size=3><span style= color:rgb(142,0,0)><strong>Did you know that...</strong></font></span>
@@ -438,8 +438,8 @@ server <- function(input, output) {
       layout(
         yaxis = list(zeroline = F, hoverformat = '.2f'))
     
-     
-     
+    
+    
     
     
   })
@@ -634,8 +634,8 @@ server <- function(input, output) {
             tickmode = "array"
           ))%>%
         layout(separators= ".",
-          xaxis = list(tickfont = list(size = 14)),
-          yaxis = list(tickfont = list(size = 14))
+               xaxis = list(tickfont = list(size = 14)),
+               yaxis = list(tickfont = list(size = 14))
         )
     }
     
@@ -783,14 +783,14 @@ server <- function(input, output) {
   observeEvent(input$reset3V, {
     reset("heatmapvariable")
   })
-
+  
   
   output$bubles <-   renderPlotly({
     
     my_colors <- c("#808080","#ff0000","#ffc000","#ffff00","#92d050","#00b050","#00b0f0","#FF69B4","#002060","#7030a0","#3399ff","#ff0066")
     other_colors <- c("#808080","#ff0000","#ffc000","#ffff00","#92d050","#00b050","#00b0f0","#FF69B4","#002060","#7030a0")
     
-   
+    
     
     if((input$bubledates=="1996")&(input$rd_services=="All types of services")){
       ggplot(services_1996, aes(x=Exports, y=Imports, size=Weight,fill= Service)) +
@@ -806,8 +806,8 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_1996, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
-        
+        geom_point(data=services_1996_TT, color="black",stroke = 1.5)
+      
       
       
     }
@@ -842,7 +842,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_1997, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_1997_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="1997")&(input$rd_services=="All services except travel and transport")){
@@ -875,7 +875,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_1998, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_1998_TT, color="black",stroke = 1.5)
       
     }
     
@@ -907,7 +907,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_1999, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_1999_TT, color="black",stroke = 1.5)
       
     }
     
@@ -939,7 +939,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2000, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2000_TT, color="black",stroke = 1.5)
       
     }
     
@@ -971,7 +971,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2001, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2001_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2001")&(input$rd_services=="All services except travel and transport")){
@@ -1002,7 +1002,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2002, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2002_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2002")&(input$rd_services=="All services except travel and transport")){
@@ -1033,7 +1033,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2003, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2003_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2003")&(input$rd_services=="All services except travel and transport")){
@@ -1064,7 +1064,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2004, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2004_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2004")&(input$rd_services=="All services except travel and transport")){
@@ -1095,7 +1095,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2005, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2005_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2005")&(input$rd_services=="All services except travel and transport")){
@@ -1126,7 +1126,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2006, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2006_TT, color="black",stroke = 1.5)
       
     }
     
@@ -1158,7 +1158,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2007, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2007_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2007")&(input$rd_services=="All services except travel and transport")){
@@ -1189,7 +1189,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2008, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2008_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2008")&(input$rd_services=="All services except travel and transport")){
@@ -1220,7 +1220,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2009, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2009_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2009")&(input$rd_services=="All services except travel and transport")){
@@ -1251,7 +1251,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2010, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2010_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2010")&(input$rd_services=="All services except travel and transport")){
@@ -1282,7 +1282,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2011, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2011_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2011")&(input$rd_services=="All services except travel and transport")){
@@ -1313,7 +1313,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2012, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2012_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2012")&(input$rd_services=="All services except travel and transport")){
@@ -1344,7 +1344,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2013, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2013_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2013")&(input$rd_services=="All services except travel and transport")){
@@ -1375,7 +1375,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2014, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2014_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2014")&(input$rd_services=="All services except travel and transport")){
@@ -1406,7 +1406,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2015, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2015_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2015")&(input$rd_services=="All services except travel and transport")){
@@ -1437,7 +1437,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2016, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2016_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2016")&(input$rd_services=="All services except travel and transport")){
@@ -1468,7 +1468,7 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2017, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2017_TT, color="black",stroke = 1.5)
       
     }
     else if((input$bubledates=="2017")&(input$rd_services=="All services except travel and transport")){
@@ -1500,7 +1500,8 @@ server <- function(input, output) {
         theme(axis.text.y= element_text(family='Arial',size=11,color='#505050')) +
         ggtitle(paste("Year",input$bubledates,sep=" "))+  
         theme(legend.title=element_blank())+
-        geom_point(data=highlight_df_2018, aes(x=Exports,y=Imports), color="black",stroke = 1.5)
+        geom_point(data=services_2018_TT, color="black",stroke = 1.5)
+      
       
     }
     
@@ -1559,7 +1560,7 @@ server <- function(input, output) {
               customdata = MIP_Y2018$FullName,
               hovertemplate = 'ISO Code: %{x}, Value: %{y}, Country: %{customdata}')%>%
         layout(title = paste("Year",input$internationaldates,sep=" "))%>%
-   #     layout(yaxis = list(range = c(-21.5,10.5))) %>%
+        #     layout(yaxis = list(range = c(-21.5,10.5))) %>%
         layout(xaxis = ax, yaxis = ax)%>%
         layout(plot_bgcolor='#EBEBEB')%>%
         layout(
@@ -1604,7 +1605,7 @@ server <- function(input, output) {
                                     'rgb(204,198,204)')),
               customdata = MIP_Y2018_04$FullName,
               hovertemplate = 'ISO Code: %{x}, Value: %{y}, Country: %{customdata}')%>%
-   #     layout(yaxis = list(range = c(-21.5,9))) %>%
+        #     layout(yaxis = list(range = c(-21.5,9))) %>%
         layout(title = paste("Year",input$internationaldates,sep=" "))%>%
         layout(xaxis = ax, yaxis = ax)%>%
         layout(plot_bgcolor='#EBEBEB')%>%

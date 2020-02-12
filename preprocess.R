@@ -2,6 +2,7 @@
 # This is how we clear R's memory
 rm(list = ls()) 
 library(readxl)
+library(dplyr)
 
 # 'BCK_Annual_Data_TUDO_COLUNA.xls' is my data; it's the original data, so DO NOT CHANGE IT!
 filename <- 'BCK_Global_R.csv'
@@ -34,6 +35,7 @@ services_15 <- 'Services_Y2015.csv'
 services_16 <- 'Services_Y2016.csv'
 services_17 <- 'Services_Y2017.csv'
 services_18 <- 'Services_Y2018.csv'
+
 
 month_year <- 'HEATMAP_1_Variable.csv'
 
@@ -135,76 +137,6 @@ MIP_Y2017 <- read.csv(MIP_2017, header = TRUE , sep = ';')
 MIP_Y2018 <- read.csv(MIP_2018, header = TRUE , sep = ';')
 
 
-highlight_df_2018 <- services_2018  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2017 <- services_2017  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2016 <- services_2016  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2015 <- services_2015  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2014 <- services_2014  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2013 <- services_2013  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2012 <- services_2012  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2011 <- services_2011  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2010 <- services_2010  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2009 <- services_2009  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2008 <- services_2008  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2007 <- services_2007  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2006 <- services_2006  %>% 
-  filter(Weight>=0.2)
-
-highlight_df_2005 <- services_2005  %>% 
-  filter(Weight>=0.19)
-
-highlight_df_2004 <- services_2004  %>% 
-  filter(Weight>=0.18)
-
-highlight_df_2003 <- services_2003  %>% 
-  filter(Weight>=0.18)
-
-highlight_df_2002 <- services_2002  %>% 
-  filter(Weight>=0.16)
-
-highlight_df_2001 <- services_2001  %>% 
-  filter(Weight>=0.15)
-
-highlight_df_2000 <- services_2000 %>% 
-  filter(Weight>=0.14)
-
-highlight_df_1999 <- services_1999  %>% 
-  filter(Weight>=0.14)
-
-highlight_df_1998 <- services_1998  %>% 
-  filter(Weight>=0.15)
-
-highlight_df_1997 <- services_1997  %>% 
-  filter(Weight>=0.15)
-
-highlight_df_1996 <- services_1996  %>% 
-  filter(Weight>=0.15)
-
-
 df <- setNames(df, c("Year","Current and capital account","AUX","Goods", "Services", "Primary income", "Secondary income","Capital account" ))
 goods_c <- setNames(goods_c, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
 goods_d <- setNames(goods_d, c("Item","Country","ISO3", "Country code","latitude","longitude", "Y1996", "Y1997","Y1998","Y1999","Y2000","Y2001","Y2002","Y2003","Y2004","Y2005","Y2006","Y2007","Y2008","Y2009","Y2010","Y2011","Y2012","Y2013","Y2014","Y2015","Y2016","Y2017","Y2018"))
@@ -303,6 +235,32 @@ services_2015_WT <- services_2015[-c(3,4),]
 services_2016_WT <- services_2016[-c(3,4),]
 services_2017_WT <- services_2017[-c(3,4),]
 services_2018_WT <- services_2018[-c(3,4),]
+
+
+services_1996_TT <- services_1996[c(3,4),]
+services_1997_TT <- services_1997[c(3,4),]
+services_1998_TT <- services_1998[c(3,4),]
+services_1999_TT <- services_1999[c(3,4),]
+services_2000_TT <- services_2000[c(3,4),]
+services_2001_TT <- services_2001[c(3,4),]
+services_2002_TT <- services_2002[c(3,4),]
+services_2003_TT <- services_2003[c(3,4),]
+services_2004_TT <- services_2004[c(3,4),]
+services_2005_TT <- services_2005[c(3,4),]
+services_2006_TT <- services_2006[c(3,4),]
+services_2007_TT <- services_2007[c(3,4),]
+services_2008_TT <- services_2008[c(3,4),]
+services_2009_TT <- services_2009[c(3,4),]
+services_2010_TT <- services_2010[c(3,4),]
+services_2011_TT <- services_2011[c(3,4),]
+services_2012_TT <- services_2012[c(3,4),]
+services_2013_TT <- services_2013[c(3,4),]
+services_2014_TT <- services_2014[c(3,4),]
+services_2015_TT <- services_2015[c(3,4),]
+services_2016_TT <- services_2016[c(3,4),]
+services_2017_TT <- services_2017[c(3,4),]
+services_2018_TT <- services_2018[c(3,4),]
+
 
 row.names(heat_ca_c) <- heat_ca_c$NAME
 heat_ca_c<- heat_ca_c[,2:13]
@@ -411,6 +369,10 @@ heat_si_n<- heat_si_n[,2:13]
 heat_si_n <-  t(heat_si_n)
 heat_si_n_matrix <- as.matrix(heat_si_n)
 head(heat_si_n)
+
+
+
+
 
 df <- df[,-(3)]
 
