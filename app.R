@@ -108,7 +108,7 @@ ui <- fluidPage(#theme="bootstrap.css"
                       ,                       HTML('<center><span style= color:rgb(142,142,142)><font face=Calibri size=3>Vitor Lopes Silveira <a href="https://www.linkedin.com/in/vitor-lopes-silveira/">LinkedIn</a></center> </font></span>')
                       ,   HTML('<center><span style= color:rgb(142,142,142)><font face=Calibri size=3>   This prototype will be used in the Project Work "How to effectively use interactivity to improve visual analysis and communication in groups of novices or experts, using the R package Shiny" developed by Maria do Mar Viana.</a><//center> </font></span>')
                       
-                   #   ,    uiOutput("video")
+                      ,    uiOutput("video")
                       
                       
              ),
