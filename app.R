@@ -144,8 +144,8 @@ ui <- fluidPage(#theme="bootstrap.css"
                           HTML("The <strong>current and capital account</strong> (<strong><span style = color:rgb(142,0,0)>red line</span></strong>) measures the surplus (+) or deficit (-) of the economy with regard to other countries. In this particular case, when positive, the Portuguese economy is lending to the rest of the world. When negative, the Portuguese economy is borrowing from the rest of the world. Current and capital account can be analyzed by major items: <br></br>
                                "), 
                           HTML("<div> <strong> <li style=margin-left:2em>  Goods and services account</strong> (<strong><span style = color:rgb(194,129,145)>light red bar </span></strong>and <strong><span style = color:rgb(255,236,114)>yellow bar</span></strong>, respectively) - transactions resulting from '<em>outcomes of the production process</em>' [Balance values (represented below) = Exports (credit)-Imports (debit)];</div> </li>
-                               <div>  <strong> <li style=margin-left:2em> Primary income account</strong> (<strong><span style = color:rgb(108,173,225)>blue bar</span></strong>) - flows related to '<em>income generated in the production process</em>'; for instance, dividends or interest. [Balance values (shown below) = Credit-Debit, where credit/debit reflect primary income received/paid by the Portuguese economy];</div></li>
-                               <div>  <strong> <li style=margin-left:2em> Secondary income account </strong> (<strong><span style = color:rgb(139,177,154)>green bar</span></strong>) - current transfers '<em>made in cash or in kind</em>'; for instance, international cooperation, donations, remittances, lotteries and other gambling [Balance values below = Credit-Debit];  </div></li>
+                               <div>  <strong> <li style=margin-left:2em> Primary income account</strong> (<strong><span style = color:rgb(139,177,154)>green bar</span></strong>) - flows related to '<em>income generated in the production process</em>'; for instance, dividends or interest. [Balance values (shown below) = Credit-Debit, where credit/debit reflect primary income received/paid by the Portuguese economy];</div></li>
+                               <div>  <strong> <li style=margin-left:2em> Secondary income account </strong> (<strong><span style = color:rgb(108,173,225)>blue bar</span></strong>) - current transfers '<em>made in cash or in kind</em>'; for instance, international cooperation, donations, remittances, lotteries and other gambling [Balance values below = Credit-Debit];  </div></li>
                                <div> <strong> <li style=margin-left:2em> Capital account </strong> (<strong><span style = color:rgb(227,194,145)>dark yellow bar</strong></span>) - capital transfers not resulting from the production process; for instance, buying/selling natural resources, goodwill, marketing brands [Balance values below = Credit-Debit].</div></li> 
                                <div>  You can find more about each major item by moving the mouse over the bars in the stacked bar chart or the line in the line chart (<strong>tooltips</strong>). </div> 
                                
@@ -409,9 +409,9 @@ server <- function(input, output) {
       add_bars(y = ~df$Services,
                name = "Services", marker = list(color = '#FFEC72')) %>%
       add_bars(y = ~df$`Primary income`,
-               name = "Primary income", marker = list(color = '#6CADE1')) %>% 
+               name = "Primary income", marker = list(color = '#8BB19A')) %>% 
       add_bars(y = ~df$`Secondary income`,
-               name = "Secondary income", marker = list(color = '#8BB19A')) %>%
+               name = "Secondary income", marker = list(color = '#6CADE1')) %>%
       add_bars(y = ~df$`Capital account`,
                name = "Capital account", marker = list(color = '#E3c291')) %>%
       add_lines(y = ~df$`Current and capital account`,
